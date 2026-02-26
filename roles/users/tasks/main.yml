@@ -13,3 +13,7 @@
 - name: Setup a VOC and ansible user
   ansible.builtin.include_tasks:
     file: 'voc_user.yml'
+
+- name: Create some admin users
+  ansible.builtin.include_tasks:
+    file: 'users.yml'

@@ -1,0 +1,71 @@
+---
+users__voc_users: []
+#  - name: alice
+#    state: 'present'
+#    admin: true
+#    password: "$Password_hash"
+#    pubkeys: |
+#       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPvvXN33GwkTF4ZOwPgF21Un4R2z9hWUuQt1qIfzQyhC
+#       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAG65EdcM+JLv0gnzT9LcqVU47Pkw0SqiIg7XipXENi8
+#       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJz7zEvUVgJJJsIgfG3izsqYcM22IaKz4jGVUbNRL2PX
+
+- name: Create Groups for users
+  become: true
+  ansible.builtin.group:
+    name: "{{ user.name }}"
+    state: 'present'
+  loop_control:
+    label: "user={{ user.name }}"
+    loop_var: user
+  loop: "{{ users__voc_users }}"
+  when: user.state | default ('present') == 'present'
+
+- name: Create User for users
+  become true
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    group: "{{ user.name }}"
+    groups: "{{ 'admin' if user.admin | default(false) else '' }}"
+    state: 'present'
+    create_home: "{{ user.create_home | default(true) }}"
+    comment: "{{ user.comment | default(user.name) }}"
+    shell: "{{ user.shell | default('/bin/bash') }}"
+    password: "{{ user.password | default() }}"
+  loop_control:
+    label: "user={{ user.name }}"
+    loop_var: user
+  when: user.state | default ('present') == 'present'
+  loop: "{{ users__voc_users }}"
+
+- name: Set Admin SSH Keys
+  become: true
+  ansible.posix.authorized_key:
+    user: "{{ user.name }}"
+    state: present
+    key: "{{ user.pubkeys }}"
+    exclusive: true
+  loop: "{{ users__voc_system_users }}"
+
+- name: Remove Accounts for Users
+  become: true
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    state: 'absent'
+    remove: "{{ user.remove | default(false) }}"
+  loop: "{{ users__voc_users }}"
+  loop_control:
+    label: "user={{ user.name }}"
+    loop_var: user
+  when: user.state | default ('present') == 'absent'
+
+- name: Remove Groups for Users
+  become: true
+  ansible.builtin.group:
+    name: "{{ user.name }}"
+    state: 'absent'
+  loop: "{{ users__voc_users }}"
+  loop_control:
+    label: "user={{ user.name }}"
+    loop_var: user
+  when: user.state | default ('present') == 'absent'
+

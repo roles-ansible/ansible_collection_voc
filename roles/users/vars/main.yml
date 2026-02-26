@@ -7,5 +7,5 @@ users__voc_system_users:
     group: 'voc'
     pwd: "{{ users__voc_voc_pwd }}"
 
-playbook_version_number: 5
+playbook_version_number: 6
 users__playbook_version_path: 'l3d.voc.users.version'
