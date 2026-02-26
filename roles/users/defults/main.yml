@@ -1,0 +1,16 @@
+---
+users__voc_users: []
+#  - name: alice
+#    state: 'present'
+#    admin: true
+#    password: "$Password_hash"
+#    pubkeys: |
+#       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPvvXN33GwkTF4ZOwPgF21Un4R2z9hWUuQt1qIfzQyhC
+#       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAG65EdcM+JLv0gnzT9LcqVU47Pkw0SqiIg7XipXENi8
+#       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJz7zEvUVgJJJsIgfG3izsqYcM22IaKz4jGVUbNRL2PX
+
+users__voc_root_pwd: '!'
+users__voc_voc_pwd: '!'
+
+# version check for this playbook (true is recomended)
+submodules_versioncheck: false

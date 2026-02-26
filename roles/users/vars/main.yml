@@ -1,0 +1,11 @@
+---
+users__voc_system_users:
+  - user: 'ansible'
+    group: 'admin'
+    system: true
+  - user: 'voc'
+    group: 'voc'
+    pwd: "{{ users__voc_voc_pwd }}"
+
+playbook_version_number: 5
+users__playbook_version_path: 'l3d.voc.users.version'

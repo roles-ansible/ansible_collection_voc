@@ -1,0 +1,15 @@
+---
+- name: Optionally run versionscheck if enabled
+  ansible.builtin.include_tasks:
+    file: 'versioncheck.yml'
+  when: submodules_versioncheck | bool
+
+- name: Combine SSH Admin Pubkeys
+  ansible.builtin.set_fact:
+    _users__voc_combined_pubkeys: "{{ _users__voc_combined_pubkeys | default('') }}\n{{ item.pubkeys | default('') }}"
+  loop: "{{ users__voc_users }}"
+  when: item.admin == true
+
+- name: Setup a VOC and ansible user
+  ansible.builtin.include_tasks:
+    file: 'voc_user.yml'
