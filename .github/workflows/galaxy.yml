@@ -1,5 +1,5 @@
 ---
-name: Galaxy-NG Roles Import
+name: Galaxy release
 
 # yamllint disable-line rule:truthy
 on:
@@ -8,17 +8,15 @@ on:
 
 jobs:
   build:
-    name: Galaxy Role Importer
     runs-on: ubuntu-latest
-
     steps:
-      - name: 'Checkout git repo'
+      - name: 'checkout git repo'
         uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 0
 
-      - name: 'Release on galaxy'
-        uses: ansible-actions/ansible-galaxy-action@v1.2.0
+      - name: "Publish Ansible"
+        uses: ansible/ansible-publish-action@v1.0.0
         with:
-          galaxy_api_key: ${{ secrets.galaxy_api_key }}
+          api_key: "${{ secrets.GALAXY_API_KEY }}"
