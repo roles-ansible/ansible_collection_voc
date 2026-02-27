@@ -1,0 +1,11 @@
+---
+dotfiles__packages:
+  - 'bash'
+  - 'vim'
+  - 'htop'
+  - 'tmux'
+  - 'terminator'
+  - 'gedit'
+
+playbook_version_number: 5
+playbook_version_path: 'l3d.voc.dotfiles.version'

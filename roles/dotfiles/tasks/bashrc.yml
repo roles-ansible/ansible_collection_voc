@@ -1,0 +1,46 @@
+---
+- name: Create global bashrc configuration
+  become: true
+  ansible.builtin.template:
+    src: 'templates/bash.bashrc.j2'
+    dest: '/etc/bash.bashrc'
+    owner: 'root'
+    group: 'root'
+    backup: true
+    mode: 'u=rw,g=r,o=r'
+
+- name: Create bashrc configuration per user
+  become: true
+  ansible.builtin.template:
+    src: 'templates/dotbashrc.j2'
+    dest: "{{ user.home | default('/home/' + user.name) }}/.bashrc"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: '0640'
+    backup: true
+  loop: "{{ users__voc_users }}"
+  loop_control:
+    label: "user={{ user.name }}"
+    loop_var: user
+  when: user.state | default ('present') == 'present'
+
+- name: Create bashrc configuration for voc
+  become: true
+  ansible.builtin.template:
+    src: 'templates/dotbashrc.j2'
+    dest: '/home/voc/.bashrc'
+    owner: 'voc'
+    group: 'voc'
+    mode: '0640'
+    backup: true
+
+- name: Create bashrc for root
+  become: true
+  ansible.builtin.template:
+    src: 'templates/dotbashrc.j2'
+    dest: "/root/.bashrc"
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
+    backup: true
+  when: user.state | default ('present') == 'present'

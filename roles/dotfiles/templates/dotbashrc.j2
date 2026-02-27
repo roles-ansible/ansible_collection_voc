@@ -1,0 +1,66 @@
+{% if user is defined %}
+# {{ user.home | default('/home/' + user.name) }}/.bashrc"
+# for user {{ user.name }}
+{% else %}
+# ~/.bashrc
+{% endif %}
+{{ ansible_managed | ansible.builtin.comment }}
+
+# Source global definitions
+if [ -f /etc/bash.bashrc ]; then
+    source /etc/bash.bashrc
+fi
+
+# User specific environment
+PATH="$HOME/.local/bin:$HOME/bin:$HOME/.cargo/env:$PATH"
+export PATH
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls="ls  --color=auto"
+    alias grep="grep --color=auto"
+    alias ip="ip  --color=auto"
+fi
+
+    alias ll="ls -alF"
+    alias la="ls -A"
+    alias l="ls -CF"
+    alias lz="ls -Z"
+    alias gitsubpull="git submodule foreach '(git checkout \$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'); git pull ; git submodule foreach \"(git checkout \$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'); git pull)\")'"
+    alias pwgen="/usr/bin/pwgen --num-passwords=3000 --numerals --capitalize --secure --no-vowels --ambiguous 95 1"
+    alias gdiff="git diff --submodule=diff"
+
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# fancy Prompt
+export PS1='\e]0; \u@\H <\A> \w\a\[\033[01;33m\] $(printf "\xE2\x9D\xA4") \[\033[01;32m\]\u\[\033[01;36m\]@\[\033[01;32m\]\H\[\033[01;34m\] <\A> \[\033[01;35m\] \j \[\033[01;36m\] \w \[\033[01;33m\]\n\[\033[01;33m\] $(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")$\[\033[01;00m\] '
+
+# bash_history
+HISTCONTROL=ignoreboth
+shopt -s histappend
+HISTSIZE=-1
+HISTFILESIZE=-1
+
+# additional general rules
+_gopass_bash_autocomplete() {
+   local cur opts base
+   COMPREPLY=()
+   cur="${COMP_WORDS[COMP_CWORD]}"
+   opts=$( ${COMP_WORDS[@]:0:$COMP_CWORD} --generate-bash-completion )
+   local IFS=$'
+'
+   COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+   return 0
+}
+complete -F _gopass_bash_autocomplete gopass
+
+# additional user rules
+
+# vim:ts=4:sw=4

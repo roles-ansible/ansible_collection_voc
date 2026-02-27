@@ -1,0 +1,29 @@
+---
+- name: Perform optional versionscheck
+  ansible.builtin.include_tasks:
+    file: 'versioncheck.yml'
+  when: submodules_versioncheck | bool
+
+- name: Install dotfiles packages
+  ansible.builtin.include_tasks:
+    file: 'packages.yml'
+
+- name: Setup and configure bashrc
+  ansible.builtin.include_tasks:
+    file: 'bashrc.yml'
+  when: users__voc_bashrc | bool
+
+- name: Setup and configure vimrc
+  ansible.builtin.include_tasks:
+    file: 'vimrc.yml'
+  when: users__voc_vimrc | bool
+
+- name: Setup and configure tmux
+  ansible.builtin.include_tasks:
+    file: 'tmux.yml'
+  when: users__voc_tmuxcfg | bool
+
+- name: Setup and configure terminator terminal
+  ansible.builtin.include_tasks:
+    file: 'terminator.yml'
+  when: users__voc_terminator | bool
