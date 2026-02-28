@@ -12,7 +12,7 @@
   become: true
   ansible.builtin.template:
     src: 'templates/vimrc.j2'
-    dest: "/home/{{ user.name) }}/.vimrc"
+    dest: "/home/{{ user.name }}/.vimrc"
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     mode: '0640'

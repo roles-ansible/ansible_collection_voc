@@ -1,14 +1,4 @@
 ---
-users__voc_users: []
-#  - name: alice
-#    state: 'present'
-#    admin: true
-#    password: "$Password_hash"
-#    pubkeys: |
-#       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPvvXN33GwkTF4ZOwPgF21Un4R2z9hWUuQt1qIfzQyhC
-#       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAG65EdcM+JLv0gnzT9LcqVU47Pkw0SqiIg7XipXENi8
-#       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJz7zEvUVgJJJsIgfG3izsqYcM22IaKz4jGVUbNRL2PX
-
 - name: Create Groups for users
   become: true
   ansible.builtin.group:
@@ -21,7 +11,7 @@ users__voc_users: []
   when: user.state | default ('present') == 'present'
 
 - name: Create User for users
-  become true
+  become: true
   ansible.builtin.user:
     name: "{{ user.name }}"
     group: "{{ user.name }}"
@@ -44,7 +34,10 @@ users__voc_users: []
     state: present
     key: "{{ user.pubkeys }}"
     exclusive: true
-  loop: "{{ users__voc_system_users }}"
+  loop: "{{ users__voc_users }}"
+  loop_control:
+    label: "user={{ user.name }}"
+    loop_var: user
 
 - name: Remove Accounts for Users
   become: true

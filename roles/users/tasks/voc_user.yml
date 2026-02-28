@@ -7,7 +7,7 @@
   loop: "{{ users__voc_system_users }}"
 
 - name: Create Users for voc
-  become true
+  become: true
   ansible.builtin.user:
     name: "{{ item.user }}"
     group: "{{ item.group }}"
@@ -15,7 +15,7 @@
     create_home: true
     system: "{{ item.system | default(false) }}"
     shell: '/bin/bash'
-    password: "{{ item.pwd | default("!") }}"
+    password: "{{ item.pwd | default('!') }}"
     state: present
   loop: "{{ users__voc_system_users }}"
 

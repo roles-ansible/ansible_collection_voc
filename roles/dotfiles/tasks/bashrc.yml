@@ -13,7 +13,7 @@
   become: true
   ansible.builtin.template:
     src: 'templates/dotbashrc.j2'
-    dest: "{{ user.home | default('/home/' + user.name) }}/.bashrc"
+    dest: "/home/{{ user.name }}/.bashrc"
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     mode: '0640'
