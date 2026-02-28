@@ -1,0 +1,13 @@
+---
+- name: Optionally run versionscheck if enabled
+  ansible.builtin.include_tasks:
+    file: 'versioncheck.yml'
+  when: submodules_versioncheck | bool
+
+- name: rua install librewolf-bin
+  kewlfft.aur.aur:
+    use: makepkg
+    name: 'librewolf-bin'
+    state: 'present'
+  become: true
+  become_user: aur_builder
