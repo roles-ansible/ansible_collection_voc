@@ -1,0 +1,18 @@
+---
+- name: Create the `aur_builder` user
+  become: true
+  ansible.builtin.user:
+    name: 'aur_builder'
+    create_home: true
+    system: true
+    shell: '/bin/bash'
+
+- name: Allow the `aur_builder` user to run `sudo pacman` without a password
+  become: true
+  community.general.sudoers:
+    name: 'aur_builder-permissions'
+    user: 'aur_builder'
+    commands: '/usr/bin/pacman'
+    state: 'present'
+    nopassword: true
+    validation: 'required'

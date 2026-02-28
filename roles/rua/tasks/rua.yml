@@ -1,0 +1,7 @@
+---
+- name: Installiere rua über Cargo
+  become: true
+  community.general.cargo:
+    name: rua
+    state: present
+    path: '/usr/'

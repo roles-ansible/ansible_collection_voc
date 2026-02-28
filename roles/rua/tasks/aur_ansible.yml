@@ -1,0 +1,8 @@
+---
+- name: Install trizen using makepkg if it isn't installed already
+  kewlfft.aur.aur:
+    name: trizen
+    use: makepkg
+    state: present
+  become: true
+  become_user: aur_builder

@@ -7,9 +7,12 @@
   when:
     - ansible_facts['pkg_mgr'] == "apt"
 
-- name: Install lightdm
+- name: Install rua build dependencys
   become: true
   ansible.builtin.package:
     name: "{{ item }}"
     state: 'present'
-  loop: "{{ obs__packages }}"
+  loop:
+    - 'git'
+    - 'base-devel'
+    - 'rust'

@@ -1,3 +1,10 @@
 ---
+obs__packages:
+  - 'ffmpeg'
+  - 'ffmpeg4.4'
+  - 'gstreamer'
+  - 'vlc'
+  - 'mpv'
+
 playbook_version_number: 6
 obs__playbook_version_path: 'l3d.voc.obs.version'

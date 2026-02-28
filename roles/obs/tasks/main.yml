@@ -4,6 +4,10 @@
     file: 'versioncheck.yml'
   when: submodules_versioncheck | bool
 
-- name: Install obs-studio
+- name: Install obs-studio reuqirements
   ansible.builtin.include_tasks:
     file: 'packages.yml'
+
+- name: Install obs-studio using aur
+  ansible.builtin.include_tasks:
+    file: 'aur_packages.yml'

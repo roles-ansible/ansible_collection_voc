@@ -1,0 +1,21 @@
+---
+- name: Optionally run versionscheck if enabled
+  ansible.builtin.include_tasks:
+    file: 'versioncheck.yml'
+  when: submodules_versioncheck | bool
+
+- name: Install rust
+  ansible.builtin.include_tasks:
+    file: 'packages.yml'
+
+- name: Install rua using cargo
+  ansible.builtin.include_tasks:
+    file: 'rua.yml'
+
+- name: Setup aur_builder user
+  ansible.builtin.include_tasks:
+    file: 'aur_builder.yml'
+
+- name: Setup aur via ansible
+  ansible.builtin.include_tasks:
+    file: 'aur_ansible.yml'
