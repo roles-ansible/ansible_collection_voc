@@ -1,4 +1,4 @@
  ansible role decklink
 =======================
 
-Ansible role to installdecklink drivers
+Ansible role to install decklink drivers

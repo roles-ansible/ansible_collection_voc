@@ -1,0 +1,15 @@
+---
+- name: Create additional Groups for voc
+  become: true
+  ansible.builtin.group:
+    name: "{{ item }}"
+    state: 'present'
+  loop: "{{ users__voc_system_groups }}"
+
+- name: Add voc to additional groups
+  become: true
+  ansible.builtin.user:
+    name: 'voc'
+    groups: "{{ item }}"
+    append: true
+  loop: "{{ users__voc_system_groups }}"

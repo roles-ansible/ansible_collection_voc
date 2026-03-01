@@ -17,3 +17,7 @@
 - name: Create some admin users
   ansible.builtin.include_tasks:
     file: 'users.yml'
+
+- name: Add additional groups for voc
+  ansible.builtin.include_tasks:
+    file: 'voc_permissions.yml'
