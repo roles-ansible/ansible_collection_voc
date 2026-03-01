@@ -1,0 +1,14 @@
+---
+pkgs__packages:
+  - 'nautilus'
+  - 'vim'
+  - 'htop'
+  - 'ranger'
+  - 'mpv'
+  - 'ffmpeg'
+  - 'tree'
+  - 'nmap'
+  - 'tmux'
+
+playbook_version_number: 6
+pkgs__playbook_version_path: 'l3d.voc.pkgs.version'
