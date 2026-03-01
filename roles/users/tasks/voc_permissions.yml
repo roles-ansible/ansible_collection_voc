@@ -17,7 +17,7 @@
 - name: Allow root access for user voc
   become: true
   community.general.sudoers:
-    name: 'admin-permissions'
+    name: 'voc-user-permissions'
     user: 'voc'
     commands: 'ALL'
     state: 'present'

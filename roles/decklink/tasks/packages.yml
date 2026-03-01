@@ -10,3 +10,4 @@
     - 'decklink'
     - 'mediaexpress'
     - 'decklink-sdk'
+  notify: 'systemctl restart DesktopVideoHelper.service'

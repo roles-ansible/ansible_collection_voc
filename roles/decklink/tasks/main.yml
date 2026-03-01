@@ -8,6 +8,10 @@
   ansible.builtin.include_tasks:
     file: 'packages.yml'
 
-- name: Reinstall linux headers
+- name: Reinstall linux headers and modprobe and stuff
   ansible.builtin.include_tasks:
     file: 'linux_headers.yml'
+
+- name: Enable decklink service
+  ansible.builtin.include_tasks:
+    file: 'systemd.yml'

@@ -1,0 +1,7 @@
+---
+- name: Restart service DesktopVideoHelper.service
+  become: true
+  listen: 'systemctl restart DesktopVideoHelper.service'
+  ansible.builtin.systemd_service:
+    name: 'DesktopVideoHelper.service'
+    state: 'restarted'

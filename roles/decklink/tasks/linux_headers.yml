@@ -7,3 +7,12 @@
       - 'pahole'
     state: 'present'
     update_cache: true
+  notify: 'systemctl restart DesktopVideoHelper.service'
+
+- name: Load blackmagic kernel module
+  become: true
+  community.general.modprobe:
+    name: 'blackmagic'
+    state: present
+    persistent: present
+  notify: 'systemctl restart DesktopVideoHelper.service'
