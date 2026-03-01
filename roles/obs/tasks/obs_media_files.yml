@@ -6,7 +6,10 @@
     mode: '0755'
     owner: 'voc'
     group: 'voc'
-    path: '/home/voc/obs'
+    path: "{{ item }}"
+  loop:
+    - '/home/voc/obs'
+    - '/home/voc/obs/placeholder'
 
 - name: Downlaod media files
   become: true
@@ -14,4 +17,15 @@
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "/home/voc/obs/{{ item.dest }}"
+    mode: '0644'
   loop: "{{ obs__media_files }}"
+
+- name: Transfer media files
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "/home/voc/obs/placeholder/{{ item.dest }}"
+    owner: 'voc'
+    group: 'voc'
+    mode: '0644'
+  loop: "{{ obs_local__media_files }}"
