@@ -11,3 +11,7 @@
 - name: Install obs-studio using aur
   ansible.builtin.include_tasks:
     file: 'aur_packages.yml'
+
+- name: Download media files for obs szene
+  ansible.builtin.include_tasks:
+    file: obs_media_files.yml

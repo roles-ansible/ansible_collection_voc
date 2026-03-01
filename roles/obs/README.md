@@ -2,3 +2,7 @@
 =======================
 
 Ansible role to install obs studio and prepare the setup
+
+## Important variables
+
++ ``obs__media_files``

@@ -1,0 +1,17 @@
+---
+- name: Create media files directory
+  become: true
+  ansible.builtin.file:
+    state: 'directory'
+    mode: '0755'
+    owner: 'voc'
+    group: 'voc'
+    path: '/home/voc/obs'
+
+- name: Downlaod media files
+  become: true
+  become_user: 'voc'
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "/home/voc/obs/{{ item.dest }}"
+  loop: "{{ obs__media_files }}"

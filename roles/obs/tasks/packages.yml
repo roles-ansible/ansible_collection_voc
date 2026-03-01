@@ -7,7 +7,7 @@
   when:
     - ansible_facts['pkg_mgr'] == "apt"
 
-- name: Install lightdm
+- name: Install requirements for obs
   become: true
   ansible.builtin.package:
     name: "{{ item }}"
