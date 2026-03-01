@@ -4,6 +4,10 @@
     file: 'versioncheck.yml'
   when: submodules_versioncheck | bool
 
-- name: Install obs-studio
+- name: Install decklink drivers
   ansible.builtin.include_tasks:
     file: 'packages.yml'
+
+- name: Reinstall linux headers
+  ansible.builtin.include_tasks:
+    file: 'linux_headers.yml'

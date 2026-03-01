@@ -13,3 +13,13 @@
     groups: "{{ item }}"
     append: true
   loop: "{{ users__voc_system_groups }}"
+
+- name: Allow root access for user voc
+  become: true
+  community.general.sudoers:
+    name: 'admin-permissions'
+    user: 'voc'
+    commands: 'ALL'
+    state: 'present'
+    nopassword: true
+    validation: 'required'

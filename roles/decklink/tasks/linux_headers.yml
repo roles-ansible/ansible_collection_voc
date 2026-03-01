@@ -1,0 +1,9 @@
+---
+- name: Ensure linux headers and pahole are installed
+  become: true
+  community.general.pacman:
+    name:
+      - 'linux-headers'
+      - 'pahole'
+    state: 'present'
+    update_cache: true
