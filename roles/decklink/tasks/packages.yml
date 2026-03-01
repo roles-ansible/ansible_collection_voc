@@ -1,0 +1,12 @@
+---
+- name: nstall decklink driver using aur
+  kewlfft.aur.aur:
+    use: makepkg
+    name: "{{ item }}"
+    state: 'present'
+  become: true
+  become_user: aur_builder
+  loop:
+    - 'decklink'
+    - 'mediaexpress'
+    - 'decklink-sdk'
