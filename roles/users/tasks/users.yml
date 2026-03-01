@@ -61,4 +61,3 @@
     label: "user={{ user.name }}"
     loop_var: user
   when: user.state | default ('present') == 'absent'
-

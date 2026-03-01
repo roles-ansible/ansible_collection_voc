@@ -43,6 +43,8 @@ tags:
 # range specifiers can be set and are separated by ','
 dependencies:
   "community.general": ">=12.4.0"
+  "kewlfft.aur": ">=0.13.1"
+  "ansible.posix": ">=2.1.0"
 
 # The URL of the originating SCM repository
 repository: https://github.com/roles-ansible/ansible_collection_voc.git
