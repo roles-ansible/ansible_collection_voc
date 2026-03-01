@@ -5,6 +5,15 @@ obs__packages:
   - 'gstreamer'
   - 'vlc'
   - 'mpv'
+  - 'asio'
+  - 'cmake'
+  - 'extra-cmake-modules'
+  - 'ffnvcodec-headers'
+  - 'nlohmann-json'
+  - 'swig'
+  - 'websocketpp'
+  - 'librist'
+  - 'qt6-wayland'
 
 playbook_version_number: 6
 obs__playbook_version_path: 'l3d.voc.obs.version'

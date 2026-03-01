@@ -1,10 +1,11 @@
 ---
-- name: aur install obs
+- name: Install obs from aur
   kewlfft.aur.aur:
     use: 'makepkg'
     name: "{{ item }}"
     state: 'present'
   loop:
+    - 'libajantv2'
     - 'obs-studio-liberty'
   become: true
   become_user: aur_builder
