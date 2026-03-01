@@ -1,0 +1,19 @@
+---
+- name: Create systemd unit for companion
+  become: true
+  ansible.builtin.template:
+    src: 'templates/companion.service.j2'
+    dest: '/lib/systemd/system/companion.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify: 'systemctl restart companion.service'
+
+- name: Start companion service
+  become: true
+  ansible.builtin.systemd_service:
+    name: 'companion.service'
+    state: 'started'
+    daemon_reload: true
+    enabled: true
+

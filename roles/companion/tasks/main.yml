@@ -11,3 +11,7 @@
 - name: Install some packages from aur
   ansible.builtin.include_tasks:
     file: 'aur_packages.yml'
+
+- name: Install systemd service for companion
+  ansible.builtin.include_tasks:
+    file: 'systemd.yml'

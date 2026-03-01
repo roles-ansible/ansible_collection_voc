@@ -1,0 +1,18 @@
+{{ ansible_managed | comment }}
+[Unit]
+Description=Bitfocus Companion
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=voc
+group=voc
+Environment=COMPANION_IN_SYSTEMD=1
+ExecStart=/usr/bin/companion-headless
+Restart=on-failure
+KillSignal=SIGINT
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

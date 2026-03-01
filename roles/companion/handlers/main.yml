@@ -1,0 +1,7 @@
+---
+- name: Restart companion service
+  become: true
+  listen: 'systemctl restart companion.service'
+  ansible.builtin.systemd_service:
+    name: 'companion.service'
+    state: 'restarted'
