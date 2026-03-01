@@ -1,0 +1,5 @@
+---
+obs__event_slug: 'recording'
+
+# version check for this playbook (true is recomended)
+submodules_versioncheck: false

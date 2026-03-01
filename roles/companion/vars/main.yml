@@ -1,0 +1,5 @@
+---
+companion__packages: []
+
+playbook_version_number: 6
+companion__playbook_version_path: 'l3d.voc.companion.version'
