@@ -4,6 +4,10 @@
     file: 'versioncheck.yml'
   when: submodules_versioncheck | bool
 
+- name: Install gpg key for aur_builder
+  ansible.builtin.include_tasks:
+    file: 'gnupg.yml'
+
 - name: rua install librewolf-bin
   kewlfft.aur.aur:
     use: makepkg

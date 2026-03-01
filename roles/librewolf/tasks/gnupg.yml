@@ -1,0 +1,17 @@
+---
+- name: define gpg keyserver
+  ansible.builtin.template:
+    src: 'templates/gpg.conf.j2'
+    dest: '/home/aur_builder/.gnupg/gpg.conf'
+    owner: 'aur_builder'
+    mode: '0644'
+    group: 'aur_builder'
+  become: true
+  become_user: aur_builder
+
+- name: Ensure a key is not present in the db
+  ansible.builtin.command:
+    cmd: 'gpg --recv-keys 8A74EAAF89C17944'
+  become: true
+  become_user: aur_builder
+  changed_when: false
