@@ -1,0 +1,15 @@
+---
+obs_local__media_files:
+  - src: 'files/placeholder_cam1.png'
+    dest: 'placeholder_cam1.png'
+  - src: 'files/placeholder_cam2.png'
+    dest: 'placeholder_cam2.png'
+  - src: 'files/placeholder_cam3.png'
+    dest: 'placeholder_cam3.png'
+  - src: 'files/placeholder_slides.png'
+    dest: 'placeholder_slides.png'
+  - src: 'files/placeholder_stage_display.png'
+    dest: 'placeholder_stage_display.png'
+
+playbook_version_number: 6
+obs_szene__playbook_version_path: 'l3d.voc.obs_szene.version'

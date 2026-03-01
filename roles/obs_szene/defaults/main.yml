@@ -1,3 +1,7 @@
 ---
+obs__media_files: []
+#  - url: "https://example.com/cwtv.png"
+#    dest: 'cwtv.png'
+
 # version check for this playbook (true is recomended)
 submodules_versioncheck: false
