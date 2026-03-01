@@ -1,5 +1,5 @@
 ---
-obs_local__media_files:
+obs_szene__local_media_files:
   - src: 'files/placeholder_cam1.png'
     dest: 'placeholder_cam1.png'
   - src: 'files/placeholder_cam2.png'
@@ -11,5 +11,5 @@ obs_local__media_files:
   - src: 'files/placeholder_stage_display.png'
     dest: 'placeholder_stage_display.png'
 
-playbook_version_number: 6
+playbook_version_number: 7
 obs_szene__playbook_version_path: 'l3d.voc.obs_szene.version'

@@ -1,0 +1,12 @@
+---
+- name: Create media files directory
+  become: true
+  ansible.builtin.file:
+    state: 'directory'
+    mode: '0755'
+    owner: 'voc'
+    group: 'voc'
+    path: "{{ item }}"
+  loop:
+    - '/home/voc/Videos'
+    - '/home/voc/Videos/{{ obs__event_slug }}'

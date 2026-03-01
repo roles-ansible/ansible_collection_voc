@@ -13,12 +13,14 @@
 
 - name: Downlaod media files
   become: true
-  become_user: 'voc'
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "/home/voc/obs/{{ item.dest }}"
+    owner: 'voc'
+    group: 'voc'
     mode: '0644'
-  loop: "{{ obs__media_files }}"
+    force: true
+  loop: "{{ obs_szene__media_files }}"
 
 - name: Transfer media files
   become: true
@@ -28,4 +30,4 @@
     owner: 'voc'
     group: 'voc'
     mode: '0644'
-  loop: "{{ obs_local__media_files }}"
+  loop: "{{ obs_szene__local_media_files }}"
