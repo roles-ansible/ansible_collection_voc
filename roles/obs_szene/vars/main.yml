@@ -10,6 +10,8 @@ obs_szene__local_media_files:
     dest: 'placeholder_slides.png'
   - src: 'files/placeholder_stage_display.png'
     dest: 'placeholder_stage_display.png'
+  - src: 'overlay_stage_display.png'
+    dest: 'overlay_stage_display.png'
 
 playbook_version_number: 7
 obs_szene__playbook_version_path: 'l3d.voc.obs_szene.version'

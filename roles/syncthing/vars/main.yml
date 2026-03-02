@@ -1,0 +1,6 @@
+---
+syncthing__packages:
+  - 'syncthing'
+
+playbook_version_number: 6
+syncthing__playbook_version_path: 'l3d.voc.syncthing.version'

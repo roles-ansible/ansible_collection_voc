@@ -1,0 +1,13 @@
+---
+- name: Optionally run versionscheck if enabled
+  ansible.builtin.include_tasks:
+    file: 'versioncheck.yml'
+  when: submodules_versioncheck | bool
+
+- name: Install some packages
+  ansible.builtin.include_tasks:
+    file: 'packages.yml'
+
+- name: Start syncthing using systemd
+  ansible.builtin.include_tasks:
+    file: 'systemd.yml'
