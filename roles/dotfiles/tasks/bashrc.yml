@@ -13,16 +13,16 @@
   become: true
   ansible.builtin.template:
     src: 'templates/dotbashrc.j2'
-    dest: "/home/{{ user.name }}/.bashrc"
-    owner: "{{ user.name }}"
-    group: "{{ user.name }}"
+    dest: "/home/{{ usr.name }}/.bashrc"
+    owner: "{{ usr.name }}"
+    group: "{{ usr.name }}"
     mode: '0640'
     backup: true
   loop: "{{ users__voc_users }}"
   loop_control:
-    label: "user={{ user.name }}"
-    loop_var: user
-  when: user.state | default ('present') == 'present'
+    label: "user={{ usr.name }}"
+    loop_var: usr
+  when: usr.state | default ('present') == 'present'
 
 - name: Create bashrc configuration for voc
   become: true
@@ -43,4 +43,3 @@
     group: 'root'
     mode: '0640'
     backup: true
-  when: user.state | default ('present') == 'present'

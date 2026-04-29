@@ -1,3 +1,5 @@
 ---
+autologin__session: 'sway'
+
 # version check for this playbook (true is recomended)
 submodules_versioncheck: false

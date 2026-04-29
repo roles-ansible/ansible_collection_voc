@@ -1,4 +1,13 @@
 ---
+- name: Make sure .gnupg exist
+  become: true
+  ansible.builtin.file:
+    path: /home/aur_builder/.gnupg
+    state: directory
+    owner: aur_builder
+    group: aur_builder
+    mode: '0700'
+
 - name: define gpg keyserver
   ansible.builtin.template:
     src: 'templates/gpg.conf.j2'

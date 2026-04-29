@@ -38,28 +38,28 @@
 - name: Create config directory for terminator
   become: true
   ansible.builtin.file:
-    path: "{{ user.home | default('/home/' + user.name) }}/.config/terminator"
+    path: "{{ usr.home | default('/home/' + usr.name) }}/.config/terminator"
     state: 'directory'
     mode: '0750'
-    owner: "{{ user.name }}"
-    group: "{{ user.name }}"
+    owner: "{{ usr.name }}"
+    group: "{{ usr.name }}"
   loop: "{{ users__voc_users }}"
   loop_control:
-    label: "user={{ user.name }}"
-    loop_var: user
-  when: user.state | default ('present') == 'present'
+    label: "user={{ usr.name }}"
+    loop_var: usr
+  when: usr.state | default ('present') == 'present'
 
 
 - name: Create terminator configuration per defined user
   become: true
   ansible.builtin.template:
     src: 'templates/terminator.conf.j2'
-    dest: "{{ user.home | default('/home/' + user.name) }}/.config/terminator/config"
-    owner: "{{ user.name }}"
-    group: "{{ user.name }}"
+    dest: "{{ usr.home | default('/home/' + usr.name) }}/.config/terminator/config"
+    owner: "{{ usr.name }}"
+    group: "{{ usr.name }}"
     mode: '0640'
   loop: "{{ users__voc_users }}"
   loop_control:
-    label: "user={{ user.name }}"
-    loop_var: user
-  when: user.state | default ('present') == 'present'
+    label: "user={{ usr.name }}"
+    loop_var: usr
+  when: usr.state | default ('present') == 'present'

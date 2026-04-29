@@ -7,5 +7,5 @@ dotfiles__packages:
   - 'terminator'
   - 'gedit'
 
-playbook_version_number: 5
+playbook_version_number: 6
 playbook_version_path: 'l3d.voc.dotfiles.version'

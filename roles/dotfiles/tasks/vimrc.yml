@@ -12,15 +12,15 @@
   become: true
   ansible.builtin.template:
     src: 'templates/vimrc.j2'
-    dest: "/home/{{ user.name }}/.vimrc"
-    owner: "{{ user.name }}"
-    group: "{{ user.name }}"
+    dest: "/home/{{ usr.name }}/.vimrc"
+    owner: "{{ usr.name }}"
+    group: "{{ usr.name }}"
     mode: '0640'
   loop: "{{ users__voc_users }}"
   loop_control:
-    label: "user={{ user.name }}"
-    loop_var: user
-  when: user.state | default ('present') == 'present'
+    label: "user={{ usr.name }}"
+    loop_var: usr
+  when: usr.state | default ('present') == 'present'
 
 - name: Create vimrc configuration for voc
   become: true
