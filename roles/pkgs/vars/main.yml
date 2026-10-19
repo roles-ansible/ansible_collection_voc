@@ -9,6 +9,8 @@ pkgs__packages:
   - 'tree'
   - 'nmap'
   - 'tmux'
+  - 'librewolf'
+  - 'lf'
 
-playbook_version_number: 6
+playbook_version_number: 7
 pkgs__playbook_version_path: 'l3d.voc.pkgs.version'
