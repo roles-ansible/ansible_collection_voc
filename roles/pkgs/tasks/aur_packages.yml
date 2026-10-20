@@ -5,7 +5,6 @@
     name: "{{ item }}"
     state: 'present'
   loop:
-    - 'bat-cat-git'
-    -  'openswitcher'
+    - 'openswitcher'
   become: true
   become_user: aur_builder
