@@ -13,6 +13,7 @@ pkgs__packages:
   - 'lf'
   - 'cyme'
   - 'usbutils'
+  - 'alsa-scarlett-gui'
 
 playbook_version_number: 7
 pkgs__playbook_version_path: 'l3d.voc.pkgs.version'
