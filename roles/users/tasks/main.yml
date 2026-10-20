@@ -8,7 +8,7 @@
   ansible.builtin.set_fact:
     _users__voc_combined_pubkeys: "{{ _users__voc_combined_pubkeys | default('') }}\n{{ item.pubkeys | default('') }}"
   loop: "{{ users__voc_users }}"
-  when: item.admin == true
+  when: item.admin | bool
 
 - name: Setup a VOC and ansible user
   ansible.builtin.include_tasks:
