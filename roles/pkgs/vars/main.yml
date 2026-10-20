@@ -11,6 +11,8 @@ pkgs__packages:
   - 'tmux'
   - 'librewolf'
   - 'lf'
+  - 'cyme'
+  - 'usbutils'
 
 playbook_version_number: 7
 pkgs__playbook_version_path: 'l3d.voc.pkgs.version'
